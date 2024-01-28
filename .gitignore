@@ -1,0 +1,36 @@
+# Ignore Visual Studio Code settings
+.vscode/
+
+# Ignore SQLite database file
+*.db
+
+# Ignore build output
+bin/
+obj/
+
+# Ignore user-specific files
+*.user
+*.userosscache
+*.suo
+*.sln.docstates
+
+# Ignore NuGet packages
+*.nuget/
+*.nupkg
+*.paket.restore
+
+# Ignore Rider directory
+.idea/
+
+# Ignore Visual Studio files
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Ignore Rider, ReSharper, and Rider
+_ReSharper*/
+*.sln.iml
+
+# Ignore Node.js dependencies
+node_modules/
