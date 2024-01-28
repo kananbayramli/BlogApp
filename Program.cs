@@ -9,7 +9,12 @@ builder.Services.AddDbContext<BlogContext>(options =>{
     options.UseSqlite(connectionString);
 });
 
+
+
 var app = builder.Build();
+
+SeedData.TestDatalariDoldur(app);
+
 
 app.MapGet("/", () => "Hello World!");
 
