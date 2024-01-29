@@ -8,20 +8,18 @@ namespace BlogApp.Controllers;
 public class PostsController : Controller
 {
     private IPostRepository _postrepository;
-    private ITagRepository _tagRepository;
 
-    public PostsController(IPostRepository postrepository, ITagRepository tagRepository)
+    public PostsController(IPostRepository postrepository)
     {
         _postrepository = postrepository;
-        _tagRepository = tagRepository;
     }
 
     public IActionResult Index()
     {
         return View(
-            new PostsViewModel{
-                Posts = _postrepository.Posts.ToList(),
-                Tags = _tagRepository.Tags.ToList()
+            new PostsViewModel
+            {
+                Posts = _postrepository.Posts.ToList()
             }
         );
     }
