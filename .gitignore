@@ -34,3 +34,21 @@ _ReSharper*/
 
 # Ignore Node.js dependencies
 node_modules/
+
+# Ignore wwwroot/lib directory
+wwwroot/lib/
+
+# Ignore node_modules directory
+node_modules/
+
+
+# LibMan
+/libman.json
+/libman.lock.json
+
+# Bootstrap
+/node_modules/
+/dist/
+/.sass-cache/
+/.cache/
+
