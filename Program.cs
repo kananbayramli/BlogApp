@@ -15,6 +15,8 @@ builder.Services.AddDbContext<BlogContext>(options =>{
 
 //addscoped her requeste bir obyect yaradir. 
 builder.Services.AddScoped<IPostRepository, EfPostRepository>();
+builder.Services.AddScoped<ITagRepository, EfTagRepository>();
+
 
 var app = builder.Build();
 
