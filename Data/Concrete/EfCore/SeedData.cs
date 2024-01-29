@@ -19,11 +19,11 @@ namespace BlogApp.Data.Concrete.EfCore
                 if(!context.Tags.Any())
                 {
                     context.Tags.AddRange(
-                        new Tag { Text = "Web Proqramlama"},
-                        new Tag { Text = "Backend"},
-                        new Tag { Text = "Frontend"},
-                        new Tag { Text = "Full Stack"},
-                        new Tag { Text = "PHP"}
+                        new Tag { Text = "Web Proqramlama", Url="web-programming"},
+                        new Tag { Text = "Backend", Url="Backend"},
+                        new Tag { Text = "Frontend", Url="Frontend"},
+                        new Tag { Text = "Full Stack", Url="fullstack"},
+                        new Tag { Text = "PHP", Url="php"}
                     );
                     context.SaveChanges();
                 }
@@ -44,6 +44,7 @@ namespace BlogApp.Data.Concrete.EfCore
                         new Post {
                             Title = "Asp.net Core",
                             Content = "Asp.net core dersleri",
+                            Url = "aspnet-core",
                             IsActive = true,
                             PublishedOn = DateTime.Now.AddDays(-10),
                             Tags = context.Tags.Take(3).ToList(),
@@ -53,6 +54,7 @@ namespace BlogApp.Data.Concrete.EfCore
                         new Post {
                             Title = "PHP",
                             Content = "PHP dersleri",
+                            Url = "php",
                             IsActive = true,
                             PublishedOn = DateTime.Now.AddDays(-5),
                             Tags = context.Tags.Take(2).ToList(),
@@ -62,6 +64,7 @@ namespace BlogApp.Data.Concrete.EfCore
                         new Post {
                             Title = "Django/Python",
                             Content = "Django/python dersleri",
+                            Url = "django",
                             IsActive = true,
                             PublishedOn = DateTime.Now.AddDays(-20),
                             Tags = context.Tags.Take(2).ToList(),

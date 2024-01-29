@@ -24,7 +24,16 @@ app.UseStaticFiles();
 
 SeedData.TestDatalariDoldur(app);
 
+app.MapControllerRoute(
+    name: "post_default",
+    pattern: "posts/{url}/",
+    defaults: new {controller="Posts", action="Details"}
+);
 
-app.MapDefaultControllerRoute();
+
+app.MapControllerRoute(
+    name: "default",
+    pattern: "{controller=Home}/{action=Index}/{id?}"
+);
 
 app.Run();
