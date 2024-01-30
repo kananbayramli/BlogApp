@@ -15,15 +15,21 @@ public class PostsController : Controller
         _postrepository = postrepository;
     }
 
-    public IActionResult Index()
+    public async Task<IActionResult> Index(string tag)
     {
+
+        var posts = _postrepository.Posts;
+        
+        if(!string.IsNullOrEmpty(tag))
+        {
+            posts = posts.Where(x => x.Tags.Any(t => t.Url == tag));
+        }
+
         return View(
-            new PostsViewModel
-            {
-                Posts = _postrepository.Posts.ToList()
-            }
-        );
+            new PostsViewModel{Posts = await posts.ToListAsync()});
     }
+
+
 
 
     public async Task<IActionResult> Details(string url)
