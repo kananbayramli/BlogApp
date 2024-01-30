@@ -19,11 +19,11 @@ namespace BlogApp.Data.Concrete.EfCore
                 if(!context.Tags.Any())
                 {
                     context.Tags.AddRange(
-                        new Tag { Text = "Web Proqramlama", Url="web-programming"},
-                        new Tag { Text = "Backend", Url="Backend"},
-                        new Tag { Text = "Frontend", Url="Frontend"},
-                        new Tag { Text = "Full Stack", Url="fullstack"},
-                        new Tag { Text = "PHP", Url="php"}
+                        new Tag { Text = "Web Proqramlama", Url="web-programming", Color= TagColors.danger},
+                        new Tag { Text = "Backend", Url="Backend", Color= TagColors.info},
+                        new Tag { Text = "Frontend", Url="Frontend", Color= TagColors.secondary},
+                        new Tag { Text = "Full Stack", Url="fullstack", Color= TagColors.warning},
+                        new Tag { Text = "PHP", Url="php", Color= TagColors.primary}
                     );
                     context.SaveChanges();
                 }
@@ -57,7 +57,7 @@ namespace BlogApp.Data.Concrete.EfCore
                             Url = "php",
                             IsActive = true,
                             PublishedOn = DateTime.Now.AddDays(-5),
-                            Tags = context.Tags.Take(2).ToList(),
+                            Tags = context.Tags.Take(5).ToList(),
                             Image = "2.jpg",
                             UserId = 2
                         },  
@@ -67,7 +67,7 @@ namespace BlogApp.Data.Concrete.EfCore
                             Url = "django",
                             IsActive = true,
                             PublishedOn = DateTime.Now.AddDays(-20),
-                            Tags = context.Tags.Take(2).ToList(),
+                            Tags = context.Tags.Take(5).ToList(),
                             Image = "3.jpg",
                             UserId = 2
                         }

@@ -19,7 +19,7 @@ public class PostsController : Controller
     {
 
         var posts = _postrepository.Posts;
-        
+
         if(!string.IsNullOrEmpty(tag))
         {
             posts = posts.Where(x => x.Tags.Any(t => t.Url == tag));
@@ -34,6 +34,9 @@ public class PostsController : Controller
 
     public async Task<IActionResult> Details(string url)
     {
-        return View(await _postrepository.Posts.FirstOrDefaultAsync(p => p.Url == url));
+        return View(await _postrepository
+                            .Posts
+                            .Include(x => x.Tags)
+                            .FirstOrDefaultAsync(p => p.Url == url));
     }
 }
