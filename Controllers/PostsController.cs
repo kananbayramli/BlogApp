@@ -37,6 +37,8 @@ public class PostsController : Controller
         return View(await _postrepository
                             .Posts
                             .Include(x => x.Tags)
+                            .Include(X => X.Comments)
+                            .ThenInclude(x => x.User)
                             .FirstOrDefaultAsync(p => p.Url == url));
     }
 }
