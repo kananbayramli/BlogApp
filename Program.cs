@@ -26,7 +26,7 @@ SeedData.TestDatalariDoldur(app);
 
 app.MapControllerRoute(
     name: "post_default",
-    pattern: "posts/{url}/",
+    pattern: "posts/details/{url}/",
     defaults: new {controller="Posts", action="Details"}
 );
 
