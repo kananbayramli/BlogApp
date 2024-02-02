@@ -47,7 +47,9 @@ public class PostsController : Controller
     }
 
 
-    public IActionResult AddComment(int PostId, string UserName, string Text, string Url)
+
+    [HttpPost]
+    public JsonResult AddComment(int PostId, string UserName, string Text)
     {
         var entity = new Comment {
             Text = Text,
@@ -56,6 +58,12 @@ public class PostsController : Controller
             User = new User {UserName = UserName, Image = "p1.jpg"}
         };
         _commentRepository.CreateComment(entity);
-        return Redirect("/posts/details/"+ Url);
+
+        return Json(new {
+            UserName,
+            Text,
+            entity.PublishedOn,
+            entity.User.Image
+        });
     }
 }
