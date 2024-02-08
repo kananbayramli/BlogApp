@@ -20,7 +20,17 @@ public class UsersController : Controller
 
     public IActionResult Login()
     {
+        if(User.Identity!.IsAuthenticated)
+        {
+            return RedirectToAction("Index", "Posts");
+        }
         return View();
+    }
+
+    public async Task<IActionResult> Logout()
+    {
+        await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+        return RedirectToAction("Login");
     }
 
 
