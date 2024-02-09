@@ -43,6 +43,7 @@ namespace BlogApp.Data.Concrete.EfCore
                         new Post {
                             Title = "Asp.net Core",
                             Content = "Asp.net core dersleri",
+                            Description = "Asp.net core dersleri seni proqramlawdirmada dahada yetishdirecek",
                             Url = "aspnet-core",
                             IsActive = true,
                             PublishedOn = DateTime.Now.AddDays(-10),
@@ -55,6 +56,7 @@ namespace BlogApp.Data.Concrete.EfCore
                         },
                         new Post {
                             Title = "PHP",
+                            Description = "PHP derslerini daha suretle oyren",
                             Content = "PHP dersleri",
                             Url = "php",
                             IsActive = true,
@@ -65,6 +67,7 @@ namespace BlogApp.Data.Concrete.EfCore
                         },  
                         new Post {
                             Title = "Django/Python",
+                            Description = "Python ozel derslerine sende bugunden qoshul",
                             Content = "Django/python dersleri",
                             Url = "django",
                             IsActive = true,
