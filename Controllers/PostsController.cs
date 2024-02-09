@@ -26,7 +26,7 @@ public class PostsController : Controller
 
         var claims = User.Claims;
 
-        var posts = _postrepository.Posts;
+        var posts = _postrepository.Posts.Where(i => i.IsActive);
 
         if(!string.IsNullOrEmpty(tag))
         {
@@ -124,6 +124,60 @@ public class PostsController : Controller
         }
         return View(await posts.ToListAsync());
     }
+
+
+
+    [Authorize]
+    public IActionResult Edit(int? id)
+    {
+        if(id == null)
+        {
+            return NotFound();
+        }
+
+        var post = _postrepository.Posts.FirstOrDefault(x => x.PostId == id);
+        if(post == null)
+        {
+            return NotFound();
+        }
+
+        return View(new PostCreateViewModel{
+            PostId = post.PostId,
+            Title = post.Title,
+            Description = post.Description,
+            Content = post.Content,
+            Url = post.Url,
+            IsActive = post.IsActive
+        });
+    }
+
+
+
+    [Authorize]
+    [HttpPost]
+    public IActionResult Edit(PostCreateViewModel model)
+    {
+        if(ModelState.IsValid)
+        {
+            var entityToUpdate = new Post{
+                PostId = model.PostId,
+                Title = model.Title,
+                Description = model.Description,
+                Content = model.Content,
+                Url = model.Url
+            };
+
+            if(User.FindFirstValue(ClaimTypes.Role) == "admin")
+            {
+                entityToUpdate.IsActive = model.IsActive;
+            }
+
+            _postrepository.EditPost(entityToUpdate);
+            return RedirectToAction("List");
+        }
+        return View(model);
+    }
+
 
 
 }
