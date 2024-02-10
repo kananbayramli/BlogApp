@@ -13,11 +13,13 @@ public class PostsController : Controller
 {
     private IPostRepository _postrepository;
     private ICommentRepository _commentRepository;
+    private ITagRepository _tagRepository;
 
-    public PostsController(IPostRepository postrepository, ICommentRepository commentRepository)
+    public PostsController(IPostRepository postrepository, ICommentRepository commentRepository, ITagRepository tagRepository)
     {
         _postrepository = postrepository;
         _commentRepository = commentRepository;
+        _tagRepository = tagRepository;
     }
 
 
@@ -136,11 +138,13 @@ public class PostsController : Controller
             return NotFound();
         }
 
-        var post = _postrepository.Posts.FirstOrDefault(x => x.PostId == id);
+        var post = _postrepository.Posts.Include(x => x.Tags).FirstOrDefault(x => x.PostId == id);
         if(post == null)
         {
             return NotFound();
         }
+
+        ViewBag.Tags = _tagRepository.Tags.ToList();
 
         return View(new PostCreateViewModel{
             PostId = post.PostId,
@@ -148,7 +152,8 @@ public class PostsController : Controller
             Description = post.Description,
             Content = post.Content,
             Url = post.Url,
-            IsActive = post.IsActive
+            IsActive = post.IsActive,
+            Tags =  post.Tags
         });
     }
 
