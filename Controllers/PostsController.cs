@@ -161,7 +161,7 @@ public class PostsController : Controller
 
     [Authorize]
     [HttpPost]
-    public IActionResult Edit(PostCreateViewModel model)
+    public IActionResult Edit(PostCreateViewModel model, int[] tagIds)
     {
         if(ModelState.IsValid)
         {
@@ -178,9 +178,10 @@ public class PostsController : Controller
                 entityToUpdate.IsActive = model.IsActive;
             }
 
-            _postrepository.EditPost(entityToUpdate);
+            _postrepository.EditPost(entityToUpdate, tagIds);
             return RedirectToAction("List");
         }
+        ViewBag.Tags = _tagRepository.Tags.ToList();
         return View(model);
     }
 
