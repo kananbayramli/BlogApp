@@ -44,6 +44,7 @@ public class PostsController : Controller
     {
         return View(await _postrepository
                             .Posts
+                            .Include(x => x.User)
                             .Include(x => x.Tags)
                             .Include(X => X.Comments)
                             .ThenInclude(x => x.User)
